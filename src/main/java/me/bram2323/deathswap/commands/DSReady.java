@@ -1,4 +1,4 @@
-package me.bram2323.DeathSwap.Commands;
+package me.bram2323.deathswap.commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,8 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import me.bram2323.DeathSwap.Main;
-import me.bram2323.DeathSwap.Settings.SettingsManager;
+import me.bram2323.deathswap.DeathSwap;
+import me.bram2323.deathswap.settings.SettingsManager;
 import net.md_5.bungee.api.ChatColor;
 
 public class DSReady implements TabExecutor {
@@ -22,9 +22,9 @@ public class DSReady implements TabExecutor {
 	private Boolean AutoStart = false;
 	
 	@SuppressWarnings("unused")
-	private Main plugin;
+	private DeathSwap plugin;
 	
-	public DSReady(Main plugin) {
+	public DSReady(DeathSwap plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("dsready").setExecutor(this);
 		plugin.getCommand("dsready").setTabCompleter(this);
@@ -40,7 +40,7 @@ public class DSReady implements TabExecutor {
 		
 		Player p = (Player) sender;
 		
-		if (Main.game.State != 0) {
+		if (DeathSwap.game.state != 0) {
 			p.sendMessage(ChatColor.RED + "A game is still active!");
 			return true;
 		}
@@ -62,12 +62,12 @@ public class DSReady implements TabExecutor {
 						Bukkit.broadcastMessage(ChatColor.GREEN + "The game is starting in " + Seconds + " seconds!");
 						AutoStart = true;
 						BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-						scheduler.scheduleSyncDelayedTask(Main.main, new Runnable() {
+						scheduler.scheduleSyncDelayedTask(DeathSwap.main, new Runnable() {
 							@Override
 							public void run() {
 								AutoStart = false;
 								Ready.clear();
-								Main.game.Start(false);
+								DeathSwap.game.start(false);
 							}
 						}, (int)SettingsManager.instance.GetSetting("AutoStart"));
 					}
@@ -94,7 +94,7 @@ public class DSReady implements TabExecutor {
 				else if (Ready.toArray().length == Bukkit.getOnlinePlayers().toArray().length) {
 					Ready.clear();
 					Bukkit.broadcastMessage(ChatColor.GOLD + p.getName() + ChatColor.GREEN + " has started the game!");
-					Main.game.Start(false);
+					DeathSwap.game.start(false);
 				}
 				else {
 					p.sendMessage(ChatColor.RED + "Not everyone is ready yet! " + ChatColor.WHITE + "[" + ChatColor.GREEN + Ready.toArray().length + "/" + Bukkit.getOnlinePlayers().toArray().length + ChatColor.WHITE + "]");

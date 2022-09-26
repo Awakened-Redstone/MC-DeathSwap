@@ -1,4 +1,4 @@
-package me.bram2323.DeathSwap.Commands;
+package me.bram2323.deathswap.commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +10,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
-import me.bram2323.DeathSwap.Main;
+import me.bram2323.deathswap.DeathSwap;
 import net.md_5.bungee.api.ChatColor;
 
 public class DSTP implements TabExecutor {
 	
 	@SuppressWarnings("unused")
-	private Main plugin;
+	private DeathSwap plugin;
 	
-	public DSTP(Main plugin) {
+	public DSTP(DeathSwap plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("dstp").setExecutor(this);
 		plugin.getCommand("dstp").setTabCompleter(this);
@@ -35,7 +35,7 @@ public class DSTP implements TabExecutor {
 		Player p = (Player) sender;
 		
 		
-		if (Main.game.State == 0 || Main.game.InGame.contains(p.getUniqueId())) {
+		if (DeathSwap.game.state == 0 || DeathSwap.game.inGame.contains(p.getUniqueId())) {
 			p.sendMessage(ChatColor.RED + "Your not a spectator!");
 			return true;
 		}
@@ -61,7 +61,7 @@ public class DSTP implements TabExecutor {
 		List<String> list = new ArrayList<>();
 		
 		if (arg3.length == 1) {
-			for (UUID t : Main.game.InGame) {
+			for (UUID t : DeathSwap.game.inGame) {
 				list.add(Bukkit.getPlayer(t).getName());
 			}
 		}

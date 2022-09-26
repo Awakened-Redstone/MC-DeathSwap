@@ -1,4 +1,4 @@
-package me.bram2323.DeathSwap.Settings;
+package me.bram2323.deathswap.settings;
 
 public class Setting {
 	

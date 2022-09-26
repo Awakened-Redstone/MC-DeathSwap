@@ -1,4 +1,4 @@
-package me.bram2323.DeathSwap.Commands;
+package me.bram2323.deathswap.commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +9,16 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 
-import me.bram2323.DeathSwap.Main;
-import me.bram2323.DeathSwap.Settings.SettingsManager;
+import me.bram2323.deathswap.DeathSwap;
+import me.bram2323.deathswap.settings.SettingsManager;
 import net.md_5.bungee.api.ChatColor;
 
 public class DSSettings implements TabExecutor {
  
 	@SuppressWarnings("unused")
-	private Main plugin;
+	private DeathSwap plugin;
 	
-	public DSSettings(Main plugin) {
+	public DSSettings(DeathSwap plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("dssettings").setExecutor(this);
 		plugin.getCommand("dssettings").setTabCompleter(this);

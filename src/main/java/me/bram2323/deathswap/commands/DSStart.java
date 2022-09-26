@@ -1,4 +1,4 @@
-package me.bram2323.DeathSwap.Commands;
+package me.bram2323.deathswap.commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,15 +7,15 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 
-import me.bram2323.DeathSwap.Main;
+import me.bram2323.deathswap.DeathSwap;
 import net.md_5.bungee.api.ChatColor;
 
 public class DSStart implements TabExecutor {
 
 	@SuppressWarnings("unused")
-	private Main plugin;
+	private DeathSwap plugin;
 	
-	public DSStart(Main plugin) {
+	public DSStart(DeathSwap plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("dsstart").setExecutor(this);
 		plugin.getCommand("dsstart").setTabCompleter(this);
@@ -29,14 +29,14 @@ public class DSStart implements TabExecutor {
 			return true;
 		}
 		
-		if (Main.game.State != 0) {
+		if (DeathSwap.game.state != 0) {
 			sender.sendMessage(ChatColor.RED + "A game is still active!");
 			return true;
 		}
 		
 		Boolean dev =  (args.length == 1 && args[0].equals("true"));
 		
-		Main.game.Start(dev);
+		DeathSwap.game.start(dev);
 		
 		return true;
 	}

@@ -1,4 +1,4 @@
-package me.bram2323.DeathSwap.Database;
+package me.bram2323.deathswap.database;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,11 +8,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import me.bram2323.DeathSwap.Main;
+import me.bram2323.deathswap.DeathSwap;
 
 public class YmlFile {
 	   
-    Main plugin = Main.getPlugin(Main.class);
+    DeathSwap plugin = DeathSwap.getPlugin(DeathSwap.class);
    
     public void fileCheck(Player player){
    
@@ -64,7 +64,7 @@ public class YmlFile {
     }
     
     public void WriteData(Player player, String data, Object value) {
-    	if (Main.game.dev) return;
+    	if (DeathSwap.game.dev) return;
     	String playerName = player.getName();
     	String playerUuid = player.getUniqueId().toString();
 	    File userdata = new File(plugin.getDataFolder(), File.separator + "PlayerDatabase");

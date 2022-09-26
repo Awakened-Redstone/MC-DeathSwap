@@ -1,4 +1,4 @@
-package me.bram2323.DeathSwap.Settings;
+package me.bram2323.deathswap.settings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import me.bram2323.DeathSwap.Main;
+import me.bram2323.deathswap.DeathSwap;
 
 public class SettingsManager {
 	
@@ -18,7 +18,7 @@ public class SettingsManager {
 	public SettingsManager() {
 		if (instance != null) return;
 		instance = this;
-		config = Main.main.getConfig();
+		config = DeathSwap.main.getConfig();
 	}
 	
 	
@@ -158,8 +158,8 @@ public class SettingsManager {
 		value = value.toLowerCase();
 		if (value.equals("random") || value.equals("circle") || value.equals("random_circle") || value.equals("fixed_circle") || value.equals("pairs")) {
 			String result = SetSetting("TeleportMode", value);
-			if (value.equals("pairs") && Main.game.State == 1) {
-				Main.game.MakePairs();
+			if (value.equals("pairs") && DeathSwap.game.state == 1) {
+				DeathSwap.game.makePairs();
 			}
 			return result;
 		}

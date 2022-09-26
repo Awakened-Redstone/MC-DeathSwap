@@ -1,7 +1,7 @@
 name: DeathSwap
 version: 1.1.0
 author: Bram2323
-main: me.bram2323.DeathSwap.Main
+main: me.bram2323.deathswap.DeathSwap
 discription: This is a deathswap plugin for 1.15+!
 api-version: 1.15
 website: www.spigotmc.org/resources/2-player-death-swap-1-15-1-16.79176/
